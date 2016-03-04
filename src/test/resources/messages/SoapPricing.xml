@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://npetzall/sec" xmlns:sear="http://npetzall/search">
+    <soapenv:Header>
+        <sec:Client>
+            <sec:ClientCode>ABC123</sec:ClientCode>
+            <sec:ClientSecret>321CBA</sec:ClientSecret>
+            <sec:Site>http://cheapstu.ff</sec:Site>
+        </sec:Client>
+    </soapenv:Header>
+    <soapenv:Body>
+        <sear:Search>
+            <sear:Price>
+                <sear:From>100</sear:From>
+                <sear:To>300</sear:To>
+            </sear:Price>
+            <sear:Category>Sports</sear:Category>
+        </sear:Search>
+    </soapenv:Body>
+</soapenv:Envelope>

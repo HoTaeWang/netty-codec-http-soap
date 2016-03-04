@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://npetzall/search"
+           xmlns:tns="http://npetzall/search"
+           elementFormDefault="qualified">
+
+    <simpleType name="positiveDecimal">
+        <restriction base="decimal">
+            <minInclusive value="0.0"/>
+        </restriction>
+    </simpleType>
+
+    <element name="Search" type="tns:searchType"/>
+
+    <complexType name="searchType">
+        <sequence>
+            <element name="Price" type="tns:priceRange"/>
+            <element name="Category" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="priceRange">
+        <sequence>
+            <element name="From" type="tns:positiveDecimal"/>
+            <element name="To" type="tns:positiveDecimal"/>
+        </sequence>
+    </complexType>
+
+    <element name="Result" type="tns:resultType"/>
+
+    <complexType name="resultType">
+        <sequence>
+            <element name="Item" type="tns:itemType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="itemType">
+        <sequence>
+            <element name="Name" type="string"/>
+            <element name="Category" type="string"/>
+            <element name="Price" type="tns:positiveDecimal"/>
+        </sequence>
+    </complexType>
+
+</schema>

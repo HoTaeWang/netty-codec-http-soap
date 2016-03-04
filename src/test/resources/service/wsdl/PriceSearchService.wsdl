@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://npetzall/search"
+                  xmlns:sec="http://npetzall/sec"
+                  targetNamespace="http://npetzall/search">
+
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://npetzall/sec" schemaLocation="../xsd/sec.xsd" />
+            <import namespace="http://npetzall/search" schemaLocation="../xsd/search.xsd" />
+        </schema>
+    </wsdl:types>
+
+    <wsdl:message name="client">
+        <wsdl:part name="client" element="sec:Client"/>
+    </wsdl:message>
+
+    <wsdl:message name="search">
+        <wsdl:part name="body" element="tns:Search" />
+    </wsdl:message>
+
+    <wsdl:message name="result">
+        <wsdl:part name="body" element="tns:Result"/>
+    </wsdl:message>
+
+    <wsdl:portType name="PriceSearchEndpoint">
+        <wsdl:operation name="Search">
+            <wsdl:input message="tns:search" />
+            <wsdl:output message="tns:result"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="soapBinding" type="tns:PriceSearchEndpoint">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="Search">
+            <soap:operation soapAction="http://npetzall/search" style="document" />
+            <wsdl:input>
+                <soap:header message="tns:client" part="client" use="literal" />
+                <soap:body message="tns:search" parts="body" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body message="tns:result" parts="body" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="PriceSearchService">
+        <wsdl:port name="port" binding="tns:soapBinding">
+            <soap:address location="http://localhost:8888/soap" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

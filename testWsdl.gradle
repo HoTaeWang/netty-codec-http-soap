@@ -1,0 +1,39 @@
+configurations {
+    jaxws
+}
+
+dependencies {
+    jaxws 'com.sun.xml.ws:jaxws-tools:2.2.10'
+}
+
+task wsImport {
+    ext.destDir = file("${projectDir}/src/test/generated")
+    doLast {
+        ant {
+            sourceSets.test.output.classesDir.mkdirs()
+            destDir.mkdirs()
+            taskdef(name: 'wsimport',
+                    classname: 'com.sun.tools.ws.ant.WsImport',
+                    classpath: configurations.jaxws.asPath
+            )
+            wsimport(keep: true,
+                    destdir: sourceSets.test.output.classesDir,
+                    sourcedestdir: destDir,
+                    extension: "true",
+                    verbose: "false",
+                    quiet: "false",
+                    xnocompile: "true",
+                    xadditionalHeaders: "true",
+                    binding: 'src/test/resources/service/bindings/PriceSearchServiceBinding.xml',
+                    wsdl: 'src/test/resources/service/wsdl/PriceSearchService.wsdl') {
+                xjcarg(value: "-XautoNameResolution")
+            }
+        }
+    }
+}
+
+task cleanWsImport {
+    doLast {
+        delete wsImport.ext.destDir
+    }
+}

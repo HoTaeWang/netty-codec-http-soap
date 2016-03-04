@@ -29,6 +29,15 @@ dependencies {
     testRuntime 'org.codehaus.sonar-plugins.java:sonar-jacoco-listeners:3.2'
 }
 
+apply from: 'testWsdl.gradle'
+
+sourceSets {
+    test {
+        java {
+            srcDirs += 'src/test/generated'
+        }
+    }
+}
 
 test {
     useTestNG() {

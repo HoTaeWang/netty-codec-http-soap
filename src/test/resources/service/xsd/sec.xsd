@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://npetzall/sec"
+        xmlns:tns="http://npetzall/sec"
+        elementFormDefault="qualified">
+
+    <element name="Client" type="tns:ClientType"/>
+
+    <complexType name="ClientType">
+        <sequence>
+            <element name="ClientCode" type="string"/>
+            <element name="ClientSecret" type="string"/>
+            <element name="Site" type="string"/>
+        </sequence>
+    </complexType>
+</schema>
