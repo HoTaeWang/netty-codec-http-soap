@@ -11,7 +11,7 @@ public class Resources {
 
     private Resources() {}
 
-    public static ByteBuf MessageasByteBuf(String messageName) throws IOException {
+    public static ByteBuf MessageAsByteBuf(String messageName) throws IOException {
         return Unpooled.wrappedBuffer(readResourceToByteArray("/messages/" + messageName + ".xml"));
     }
 

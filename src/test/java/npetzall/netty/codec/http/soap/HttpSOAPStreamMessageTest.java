@@ -39,7 +39,7 @@ public class HttpSOAPStreamMessageTest {
 
     @Test
     public void create() throws IOException {
-        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageasByteBuf("SoapPricing"));
+        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageAsByteBuf("SoapPricing"));
         defaultFullHttpRequest.headers().add("x-custom-action", "search");
         HttpSOAPStreamsMessage httpSOAPStreamsMessage = new HttpSOAPStreamsMessage(defaultFullHttpRequest);
         assertThat(httpSOAPStreamsMessage).isNotNull();
@@ -47,7 +47,7 @@ public class HttpSOAPStreamMessageTest {
 
     @Test
     public void hasHttpHeaders() throws IOException {
-        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageasByteBuf("SoapPricing"));
+        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageAsByteBuf("SoapPricing"));
         defaultFullHttpRequest.headers().add("x-custom-action", "search");
         HttpSOAPStreamsMessage httpSOAPStreamsMessage = new HttpSOAPStreamsMessage(defaultFullHttpRequest);
         assertThat(httpSOAPStreamsMessage.getHeader("x-custom-action")).isEqualTo("search");
@@ -55,7 +55,7 @@ public class HttpSOAPStreamMessageTest {
 
     @Test
     public void canReadHeaderUsingUnmarshaller() throws JAXBException, IOException {
-        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageasByteBuf("SoapPricing"));
+        DefaultFullHttpRequest defaultFullHttpRequest = new DefaultFullHttpRequest(HttpVersion.HTTP_1_1, HttpMethod.POST, "/simpleService", Resources.MessageAsByteBuf("SoapPricing"));
         defaultFullHttpRequest.headers().add("x-custom-action", "search");
         HttpSOAPStreamsMessage httpSOAPStreamsMessage = new HttpSOAPStreamsMessage(defaultFullHttpRequest);
 
